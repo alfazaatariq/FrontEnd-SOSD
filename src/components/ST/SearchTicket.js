@@ -3,21 +3,21 @@ import { useState, useEffect } from 'react';
 import { getTicketsByForm, getTujuan, getAsal } from '../../utils/functions';
 import { useSearchParams } from 'react-router-dom';
 import { DataContext } from '../../App';
-import { TicketList } from '../TL/TicketList';
 import { MdDirectionsBoatFilled } from 'react-icons/md';
 import { MdLocationPin } from 'react-icons/md';
 import { MdOutlineDateRange } from 'react-icons/md';
 import './ST.css';
+import { ShowContext } from '../../pages/HomePage';
 
 const SearchTicket = () => {
   const { setTicket } = useContext(DataContext);
+  const { setShow } = useContext(ShowContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [asal, setAsal] = useState([]);
   const [tujuan, setTujuan] = useState([]);
   const [selectedAsal, setSelectedAsal] = useState('');
   const [selectedTujuan, setSelectedTujuan] = useState('');
   const [tanggal, setTanggal] = useState('');
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
