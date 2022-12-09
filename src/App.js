@@ -13,7 +13,7 @@ import { InvoiceDetailPage } from './pages/InvoiceDetailPage';
 import { AdminPage } from './pages/AdminPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
 import { AdminRegisterPage } from './pages/AdminRegisterPage';
-import './app.css'
+import './app.css';
 
 export const DataContext = createContext();
 
@@ -37,8 +37,11 @@ function App() {
         <Route path='/admin/login' element={<AdminLoginPage />}></Route>
         <Route path='/admin/register' element={<AdminRegisterPage />}></Route>
         <Route path='/search-ticket/ticket-:id' element={<FormPage />}></Route>
-        <Route path='/search-ticket/ticket/payment-:id'element={<PaymentPage />}></Route>
-        <Route path='/order' element={<OrderPage />}></Route>
+        <Route
+          path='/search-ticket/ticket/payment-:id'
+          element={<PaymentPage />}
+        ></Route>
+        {/* <Route path='/order' element={<OrderPage />}></Route> */}
         <Route path='/about' element={<AboutPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
