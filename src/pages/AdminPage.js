@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { AdminTicketList } from '../components/AdminTicketList';
 import { AdminInvoiceList } from '../components/AdminInvoiceList';
+import { Col, Container, InputGroup, Nav, Row, Table } from 'react-bootstrap';
+import ship from '../img/kapal.jpg';
 
 export const AdminPage = () => {
   const [admin, setAdmin] = useState('');
@@ -21,31 +23,66 @@ export const AdminPage = () => {
     }
     fetchUser();
   }, []);
+
   return (
     <>
-      <ButtonGroup aria-label='Basic example'>
-        <Button variant='secondary' onClick={() => setSelect('ticket')}>
+      {/* <Navbar2>
+
+      </Navbar2> */}
+      {/* <Navbar2/> */}
+
+      <div style={{ backgroundImage: `url(${ship})`, height: '1000px' ,backgroundSize:'cover'}} >
+      <Container>
+
+      <Row>
+        <h1 className="mt-3">Ticket</h1>
+      </Row>
+   
+      <Row className="mt-3">
+        <Col className="col-md-2">
+            <Button style={{marginRight:10}} variant='secondary' onClick={() => setSelect('ticket')}>
           Ticket
-        </Button>
-        <Button variant='secondary' onClick={() => setSelect('invoice')}>
+            </Button>
+            <Button variant='secondary' onClick={() => setSelect('invoice')}>
           Invoice
-        </Button>
-      </ButtonGroup>
-      <Button
-        href='/admin/login'
+            </Button>
+            <Button
+              href='/admin/login'
+              style={{ marginTop:10 }}
         onClick={() => {
           localStorage.removeItem('admin');
         }}
       >
         LOGOUT
       </Button>
-      {select === 'ticket' ? (
+        </Col>
+      </Row>
+      <Row className="mt-3">
+       
+        <Col xs={3}>
+          <div class="input-group mb-3">
+            
+          </div>
+        </Col>
+      </Row>
+      <Row className="mt-3">
+        <Col className="col-md-8">
+            <Table>
+            {select === 'ticket' ? (
         <AdminTicketList />
       ) : select === 'invoice' ? (
         <AdminInvoiceList />
       ) : (
         <div>WELCOME TO ADMIN PAGE</div>
       )}
+            </Table>
+        </Col>
+      </Row>
+          </Container>
+          
+
+    </div>
+      
     </>
   );
 };
