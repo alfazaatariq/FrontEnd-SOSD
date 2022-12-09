@@ -309,10 +309,10 @@ export const AdminInvoiceList = () => {
           </thead>
 
           <tbody>
-            {invoices.map((item) => {
+            {invoices.map((item, index) => {
               return (
                 <tr>
-                  <td></td>
+                  <td>{index + 1}</td>
                   <td>{item.user_id}</td>
                   <td>{item.asal}</td>
                   <td>{item.tujuan}</td>

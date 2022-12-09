@@ -219,10 +219,10 @@ export const AdminTicketList = () => {
           </thead>
 
           <tbody>
-            {tickets.map((item) => {
+            {tickets.map((item, index) => {
               return (
                 <tr>
-                  <td></td>
+                  <td>{index + 1}</td>
                   <td>{item._id}</td>
                   <td>{item.asal}</td>
                   <td>{item.tujuan}</td>
