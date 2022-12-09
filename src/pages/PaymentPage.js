@@ -36,7 +36,7 @@ const PaymentPage = () => {
     sessionStorage.setItem('order', JSON.stringify(userData));
     addInvoiceHandler(userData);
     alert('Silahkan melakukan pembayaran anda');
-    nav('/order');
+    nav(`/invoicedetail-${data._id}`);
   }
 
   return (
