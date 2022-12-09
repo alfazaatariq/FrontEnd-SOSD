@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import Container from 'react-bootstrap/Container';
-import { getInvoiceById, getOrderStatus } from '../utils/functions';
+import { getInvoiceByUserId, getOrderStatus } from '../utils/functions';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 export const InvoiceList = () => {
@@ -10,7 +10,7 @@ export const InvoiceList = () => {
   useEffect(() => {
     async function fetchInvoices() {
       const { user_id } = JSON.parse(localStorage.getItem('user'));
-      const data = await getInvoiceById(user_id);
+      const data = await getInvoiceByUserId(user_id);
       console.log(data);
       setInvoices(data);
     }

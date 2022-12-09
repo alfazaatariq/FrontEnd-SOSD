@@ -282,18 +282,45 @@ export const registerUser = async (name, email, phone, password) => {
   }
 };
 
-export const getInvoiceById = async (user_id) => {
+// UNTUK DI InvoiceList.js
+export const getInvoiceByUserId = async (user_id) => {
   try {
     const payLoad = {
       user_id: user_id,
     };
-    const response = await fetch('http://localhost:5000/api/invoice/show', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(payLoad),
-    });
+    const response = await fetch(
+      'http://localhost:5000/api/invoice/show_by_userid',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payLoad),
+      }
+    );
+    const dataJSON = await response.json();
+    return dataJSON.response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// UNTUK DI InvoiceDetailPage.js
+export const getInvoiceByOrderId = async (order_id) => {
+  try {
+    const payLoad = {
+      order_id: order_id,
+    };
+    const response = await fetch(
+      'http://localhost:5000/api/invoice/show_by_orderid',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payLoad),
+      }
+    );
     const dataJSON = await response.json();
     return dataJSON.response;
   } catch (error) {
