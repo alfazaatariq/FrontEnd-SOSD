@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userAddInvoice, orderTicket } from '../utils/functions';
 import { Navbar } from '../components/Navbar';
+import { ErrorPage } from './ErrorPage';
 
 const PaymentPage = () => {
   const [detailTicket, setDetailTicket] = useState('');
@@ -34,39 +35,44 @@ const PaymentPage = () => {
     };
     setDetailTicket(userData);
     sessionStorage.setItem('order', JSON.stringify(userData));
+    sessionStorage.removeItem('detailTicket');
     addInvoiceHandler(userData);
     alert('Silahkan melakukan pembayaran anda');
     nav(`/invoicedetail-${data._id}`);
   }
 
-  return (
-    <>
-      <Navbar />
-      <h1>Payment </h1>
-      <h2>Total jumlah pembayaran :</h2>
-      <h3>{detailTicket.total_harga}</h3>
-      <form
-        onSubmit={(e) => {
-          onSubmitHandler(e);
-        }}
-      >
-        <h2>Pilih Bank :</h2>
+  try {
+    return (
+      <>
+        <Navbar />
+        <h1>Payment </h1>
+        <h2>Total jumlah pembayaran :</h2>
+        <h3>{detailTicket.total_harga}</h3>
+        <form
+          onSubmit={(e) => {
+            onSubmitHandler(e);
+          }}
+        >
+          <h2>Pilih Bank :</h2>
 
-        <input
-          type='radio'
-          name='permata'
-          id='permata'
-          value='permata'
-          onChange={(e) => setBank(e.target.value)}
-          required
-        />
-        <label htmlFor='permata'>Permata Bank</label>
+          <input
+            type='radio'
+            name='permata'
+            id='permata'
+            value='permata'
+            onChange={(e) => setBank(e.target.value)}
+            required
+          />
+          <label htmlFor='permata'>Permata Bank</label>
 
-        <br />
-        <input type='submit' value='Bayar' />
-      </form>
-    </>
-  );
+          <br />
+          <input type='submit' value='Bayar' />
+        </form>
+      </>
+    );
+  } catch (error) {
+    return <ErrorPage />;
+  }
 };
 
 export default PaymentPage;
