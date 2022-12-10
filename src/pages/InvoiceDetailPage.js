@@ -16,7 +16,6 @@ export const InvoiceDetailPage = () => {
   useEffect(() => {
     async function fetchInvoices() {
       const data = await getInvoiceByOrderId(id);
-      console.log(data);
       setInvoice(data);
       const transaction_status = await getOrderStatus(id);
       setStatus(transaction_status);
