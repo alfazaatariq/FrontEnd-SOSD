@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import {
   getInvoiceByOrderId,
@@ -7,6 +7,8 @@ import {
 } from '../utils/functions';
 import { useParams } from 'react-router-dom';
 import { RiCheckboxBlankCircleFill } from 'react-icons/ri';
+import { PDFFile } from '../components/PDFFile';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 export const InvoiceDetailPage = () => {
   const [invoice, setInvoice] = useState('');
@@ -41,6 +43,16 @@ export const InvoiceDetailPage = () => {
           />
         </h1>
         <h1>VA Number : {status.permata_va_number}</h1>
+
+        <PDFDownloadLink
+          document={<PDFFile invoice={invoice} />}
+          fileName={`Tiket-${invoice[0].order_id}`}
+        >
+          {({ loading }) =>
+            loading ? <button>Loading...</button> : <button>Download</button>
+          }
+        </PDFDownloadLink>
+
         <ul className='list-ticket'>
           <h1>Invoice</h1>
           <li>order_id : {invoice[0].order_id}</li>
