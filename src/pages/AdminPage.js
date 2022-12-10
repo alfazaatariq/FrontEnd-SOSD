@@ -67,7 +67,7 @@ export const AdminPage = () => {
       </Row>
       <Row className="mt-3">
         <Col className="col-md-8">
-            <Table>
+            {/* <Table> */}
             {select === 'ticket' ? (
         <AdminTicketList />
       ) : select === 'invoice' ? (
@@ -75,7 +75,7 @@ export const AdminPage = () => {
       ) : (
         <div>WELCOME TO ADMIN PAGE</div>
       )}
-            </Table>
+            {/* </Table> */}
         </Col>
       </Row>
           </Container>

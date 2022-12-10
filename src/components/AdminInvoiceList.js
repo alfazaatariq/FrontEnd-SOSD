@@ -11,6 +11,7 @@ import {
   updateInvoiceById,
   adminAddInvoice,
 } from '../utils/functions';
+import { Container } from 'react-bootstrap';
 
 export const AdminInvoiceList = () => {
   const [invoices, setInvoices] = useState('');
@@ -128,7 +129,7 @@ export const AdminInvoiceList = () => {
 
   if (invoices) {
     return (
-      <>
+      <Container>
         <Button variant='secondary' onClick={handleShow}>
           Add new invoice
         </Button>
@@ -347,7 +348,7 @@ export const AdminInvoiceList = () => {
             })}
           </tbody>
         </Table>
-      </>
+        </Container>
     );
   }
   return <>LOADING</>;
